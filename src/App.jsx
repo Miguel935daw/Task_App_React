@@ -11,9 +11,9 @@ function App() {
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(session);
       if (!session) {
-        navigate("/prueba_react/Login");
+        navigate("/PruebaReact/Login");
       } else {
-        navigate("/prueba_react");
+        navigate("/PruebaReact");
       }
     });
   }, []);
@@ -22,9 +22,9 @@ function App() {
     <main className="bg-zinc-900 h-screen">
       <div className="container mx-auto p-10">
         <Routes>
-          <Route path="/prueba_react" element={<Home />}></Route>
-          <Route path="/prueba_react/Register" element={<Register />}></Route>
-          <Route path="/prueba_react/Login" element={<Login />} />
+          <Route path="/PruebaReact" element={<Home />}></Route>
+          <Route path="/PruebaReact/Register" element={<Register />}></Route>
+          <Route path="/PruebaReact/Login" element={<Login />} />
         </Routes>
       </div>
     </main>
