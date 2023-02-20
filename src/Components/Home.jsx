@@ -9,10 +9,6 @@ function Home() {
       <>
         <TaskForm />
         <TaskList />
-        <button className="bg-red-400" onClick={() => supabase.auth.signOut()}>
-          {" "}
-          Cerrar Sesion
-        </button>
       </>
     );
   }

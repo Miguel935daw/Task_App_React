@@ -13,7 +13,9 @@ function Login() {
         email: email,
         password: password,
       })
-      console.log(result);
+      if(!data.user){
+        document.getElementById("aviso").setAttribute("class","text-xl text-red-500")
+      }
     } catch (error) {
       console.error(error);
     }
@@ -38,9 +40,10 @@ function Login() {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="bg-indigo-500 px-3 py-1 text-white mr-1">Iniciar Sesión</button>
+        <button className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded">Iniciar Sesión</button>
       </form>
-      <button className="bg-green-500 px-3 py-1 text-white mr-1" onClick={()=> {navigate("/PruebaReact/Register")}}>Registrarse</button>
+      <button className="bg-green-500 px-3 py-1 text-white mr-1 rounded" onClick={()=> {navigate("/Task_App_React/Register")}}>Registrarse</button>
+      <h2 id="aviso" className="text-xl text-red-500 hidden">El usuario y contraseña introducidos no coinciden con ningún usuario registrado</h2>
     </div>
   );
 }
