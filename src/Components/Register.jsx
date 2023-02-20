@@ -13,7 +13,6 @@ function Register() {
         email: email,
         password: password,
       });
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -27,6 +26,7 @@ function Register() {
           Correo Electrónico
         </label>
         <input
+          required
           className="bg-slate-300 p-3 w-full mb-2"
           type="email"
           name="email"
@@ -37,22 +37,21 @@ function Register() {
           Contraseña
         </label>
         <input
+          required
           className="bg-slate-300 p-3 w-full mb-2"
           type="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
-          <button className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded">
-            Registrarse
-          </button>
-          <button
-            className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded "
-            onClick={() => navigate("/Task_App_React/Login")}
-          >
-            Volver a Iniciar Sesión
-          </button>
-        </div>
+        <button className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded m-2">
+          Registrarse
+        </button>
+        <button
+          className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded m-2"
+          onClick={() => navigate("/Task_App_React/Login")}
+        >
+          Volver a Iniciar Sesión
+        </button>
       </form>
     </div>
   );
