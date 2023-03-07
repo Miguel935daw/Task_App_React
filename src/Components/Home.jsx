@@ -15,6 +15,7 @@ function Home() {
           {" "}
           Cerrar Sesion
         </button>
+        <br />
         <button
           className="bg-green-700 text-white rounded px-3 py-1 mb-2 place-self-center"
           onClick={() => setShowTaskDone(!showTaskDone)}
