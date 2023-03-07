@@ -6,6 +6,7 @@ function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +18,6 @@ function Register() {
       console.error(error);
     }
   };
-
   return (
     <div className="max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="bg-blue-300 p-10 mb-4">
