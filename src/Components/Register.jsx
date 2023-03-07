@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 
+function comprobarContraseña(valor, campo) {
+  let exp = /^[A-Za-z\d]{8,}$/
+  console.log(valor)
+  if (exp.test(valor) == false) {
+      campo.setCustomValidity("La contraseña debe tener mínimo 8 caracteres, una letra y un número")
+      campo.reportValidity() 
+  } 
+}
+
 function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -42,6 +51,7 @@ function Register() {
           type="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
+          onBlur={(e) => comprobarContraseña(e.target.value, e.target)}
         />
         <button className="bg-indigo-500 px-3 py-1 text-white mr-1 rounded m-2">
           Registrarse
