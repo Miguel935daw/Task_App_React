@@ -2,12 +2,12 @@ import TaskCard from "./TaskCard";
 import { useContext, useEffect } from "react";
 import { TaskContext } from "../Context/TaskContext";
 
-function TaskList() {
+function TaskList(done = false) {
   const { tasks, getTasks } = useContext(TaskContext);
 
   useEffect(() =>{
-    getTasks()
-  },[])
+    getTasks(done)
+  },[done])
 
   if (tasks.length === 0) {
     return <h1 className="text-white text-4xl font-bold text-center">No hay tareas aún</h1>;

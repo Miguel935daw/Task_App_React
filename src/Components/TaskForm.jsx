@@ -15,15 +15,7 @@ function TaskForm() {
 
   return (
     <div className="max-w-md mx-auto">
-      <div className="w-fit mx-auto">
-        <button
-          className="bg-red-400 text-white rounded px-3 py-1 mb-2 place-self-center"
-          onClick={() => supabase.auth.signOut()}
-        >
-          {" "}
-          Cerrar Sesion
-        </button>
-      </div>
+      
 
       <form onSubmit={handleSubmit} className="bg-blue-300 p-10 mb-4">
         <h1 className="text-2xl font-bold text-white mb-3">Crea tu Tarea</h1>

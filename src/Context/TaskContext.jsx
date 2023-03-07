@@ -6,26 +6,18 @@ export const TaskContext = createContext();
 export function TaskContextProvider(props) {
   const [tasks, setTasks] = useState([]);
 
-  const getTasks = async () => {
+  const getTasks = async (done) => {
+    console.log(done.done)
     const {
       data: { user },
     } = await supabase.auth.getUser();
     const { error, data } = await supabase
       .from("tasks")
       .select()
-      .eq("user_id", user.id);
-    if (data == undefined) {
-      setTasks([
-        {
-          name: "Primera",
-          desription: "asdasdasdasdasdasd",
-          user_id: "b99cba2e-1ac3-4e4d-800c-e265b14af245",
-        },
-      ]);
-    } else {
+      .eq("user_id", user.id)
+      .eq("done", done.done);
       setTasks(data);
-    }
-  };
+    };
 
   const createTask = async (taskName, taskDescription) => {
     try {
@@ -39,6 +31,7 @@ export function TaskContextProvider(props) {
           name: taskName,
           description: taskDescription,
           user_id: user.id,
+          done: false,
         })
         .select();
 
@@ -63,18 +56,50 @@ export function TaskContextProvider(props) {
     setTasks(tasks.filter((task) => task.id != taskId));
   };
 
+  const doneTask = async (taskId) => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const { error, data } = await supabase
+      .from("tasks")
+      .update({done: true})
+      .eq("user_id", user.id)
+      .eq("id", taskId);
+    if (error) throw error;
+
+    setTasks(tasks.filter((task) => task.id != taskId));
+  };
+
+  const unDoneTask = async (taskId) => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const { error, data } = await supabase
+      .from("tasks")
+      .update({done: false})
+      .eq("user_id", user.id)
+      .eq("id", taskId);
+    if (error) throw error;
+
+    setTasks(tasks.filter((task) => task.id != taskId));
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tasks,
         deleteTask,
         createTask,
+        doneTask,
+        unDoneTask,
         getTasks,
       }}
     >
       {props.children}
     </TaskContext.Provider>
   );
-}
 
+}
 export default TaskContext;
