@@ -8,6 +8,9 @@ function comprobarContraseña(valor, campo) {
   if (exp.test(valor) == false) {
       campo.setCustomValidity("La contraseña debe tener mínimo 8 caracteres, una letra y un número")
       campo.reportValidity() 
+  }else{
+    campo.setCustomValidity('')
+    campo.reportValidity()
   } 
 }
 
